@@ -1,3 +1,4 @@
+import json
 from os import abort
 from flask import request, make_response, jsonify
 from flask import Flask, render_template, redirect
@@ -57,7 +58,10 @@ def about():
 
 @app.route("/schedule")
 def schedule():
-    return render_template("schedule.html")
+    with open('db/schedule.json') as file:
+        data = json.load(file)
+    print(data['7A']['1'])
+    return render_template("schedule.html", data=data)
 
 
 @app.route("/profile/<username>")
