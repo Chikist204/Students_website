@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+li{
+    float: left;
+    margin: 8px;
+}
+.table_price {
+width: 1000px;
+border-collapse: collapse;
+border-top: #000A33;
+border-left: 3px solid #000A33;
+border-right: 3px solid #000A33;
+border-bottom: 3px solid #000A33;
+font-family: "Lucida Grande", sans-serif;
+}
+.table_price caption {
+width: 1000px;
+background: #000A33;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding: 10px;
+box-shadow: 0 2px  4px 0 rgba(0,0,0,.3);
+color: white;
+font-family: "Roboto Slab",serif;
+font-style: normal;
+font-size: 26px;
+text-align: center;
+margin: 0;
+}
+.table_price td {
+padding: 30px;
+text-align: left;
+}
+.table_price tr:nth-child(2n) {
+background: #E5E5E5;
+}
+
+.table_price a {
+display: inline-block;
+padding: 5px 10px;
+background: #F79361;
+box-shadow: 2px 2px 0 0 #a22800;
+position: relative;
+}
+.table_price a:hover {
+box-shadow: none;
+top: 2px;
+left: 2px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<table class="table_price">
+    <caption>Основные сведения об образовательной организации</caption>
+</table>
+<table class="table_price">
+    <tr>
+        <td style="font-weight: bold">Наименование</td>
+        <td>10$</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Дата создания</td>
+        <td>20$</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Место нахождения</td>
+        <td>30$</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Режим и график работы</td>
+        <td>60$</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Контактные телефоны</td>
+        <td>60$</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Адреса электронной почты</td>
+        <td>60$</td>
+    </tr>
+</table>
+{% endblock %}
