@@ -3,11 +3,65 @@
 
 <html lang="en">
 {% block head %}
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link src="{{url_for('static', filename='css/prof.css')}}">
-    <script src="{{url_for('static', filename='js/scrip.js')}}"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link src="{{url_for('static', filename='css/prof.css')}}">
+<script src="{{url_for('static', filename='js/scrip.js')}}"></script>
+<style>
+li{
+    float: left;
+    margin: 8px;
+}
+.container {
+    max-width: 80%;
+}
+.table_price {
+width: 80%;
+border-collapse: collapse;
+border-top: #000A33;
+border-left: 3px solid #000A33;
+border-right: 3px solid #000A33;
+border-bottom: 3px solid #000A33;
+font-family: "Lucida Grande", sans-serif;
+
+}
+.table_price caption {
+width: 100%;
+background: #000A33;
+border-top-left-radius: 0px;
+border-top-right-radius: 0px;
+padding: 10px;
+box-shadow: 0 2px  4px 0 rgba(0,0,0,.3);
+color: white;
+font-family: "Roboto Slab",serif;
+font-style: normal;
+font-size: 26px;
+text-align: center;
+margin: 0;
+}
+.table_price td {
+padding: 15px;
+text-align: center;
+border-left: 5px solid #000A33;
+width: 25%;
+}
+.table_price tr:nth-child(2n) {
+background: #E5E5E5;
+}
+.table_price a {
+display: inline-block;
+padding: 5px 10px;
+background: #F79361;
+box-shadow: 2px 2px 0 0 #a22800;
+position: relative;
+}
+.table_price a:hover {
+box-shadow: none;
+top: 2px;
+left: 2px;
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -28,7 +82,8 @@
                                 </div>
                             </div>
                             <div class="userData ml-3">
-                                <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a>{{current_user.name}}</a></h2>
+                                <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a>{{current_user.name}}</a>
+                                </h2>
                             </div>
                             <div class="ml-auto">
                                 <input type="button" class="btn btn-primary d-none" id="btnDiscard"
@@ -80,13 +135,13 @@
                                         </div>
                                         <div class="col-md-8 col-6">
                                             {% if current_user.role == "U" %}
-                                                Uchenik
+                                            Uchenik
                                             {% endif %}
                                             {% if current_user.role == "UCH" %}
-                                                Uchitel'
+                                            Uchitel'
                                             {% endif %}
                                             {% if current_user.role == "R" %}
-                                                Roditel'
+                                            Roditel'
                                             {% endif %}
                                         </div>
                                     </div>
@@ -112,7 +167,26 @@
                                 </div>
                                 <div class="tab-pane fade" id="connectedServices" role="tabpanel"
                                      aria-labelledby="ConnectedServices-tab">
-                                    Facebook, Google, Twitter Account that are connected to this account
+                                    <table class="table_price" align="center">
+                                        <caption>{{current_user.group}}</caption>
+                                    </table>
+                                    <table class="table_price" align="center">
+                                        <tr>
+                                            <td style="font-weight: bold" bgcolor="green">Понедельник</td>
+                                            <td style="font-weight: bold" bgcolor="green">Вторник</td>
+                                            <td style="font-weight: bold" bgcolor="green">Четверг</td>
+                                            <td style="font-weight: bold" bgcolor="green">Пятница</td>
+                                        </tr>
+                                        {% set i = current_user.group %}
+                                        {% for y in range(8) %}
+                                        <tr>
+                                            <td>{{data[i]["1"][y]}}</td>
+                                            <td>{{data[i]["2"][y]}}</td>
+                                            <td>{{data[i]["3"][y]}}</td>
+                                            <td>{{data[i]["4"][y]}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
                                 </div>
                             </div>
                         </div>

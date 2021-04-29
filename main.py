@@ -28,7 +28,6 @@ def login():
     if request.method == 'POST':
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.username == request.form['username']).first()
-        print(user)
         if user and user.check_password(request.form['password']):
             if request.form.get('remember-me') is None:
                 login_user(user, remember=False)
@@ -53,23 +52,31 @@ def index():
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    with open("db/about.json", encoding="utf-8") as file:
+        data = json.load(file)
+    return render_template("about.html", data=data)
 
 
 @app.route("/schedule")
 def schedule():
-    with open('db/schedule.json') as file:
+    with open('db/schedule.json', encoding='utf-8') as file:
         data = json.load(file)
-    print(data['7A']['1'])
     return render_template("schedule.html", data=data)
+
+
+@app.route("/location")
+def location():
+    pass
 
 
 @app.route("/profile/<username>")
 def profile(username):
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.username == username).first()
+    with open('db/schedule.json', encoding='utf-8') as file:
+        data = json.load(file)
     if username == current_user.username:
-        return render_template("profile.html")
+        return render_template("profile.html", data=data)
     else:
         return render_template("profile2.html", user=user)
 
@@ -77,7 +84,6 @@ def profile(username):
 @app.route('/register', methods=['GET', 'POST'])
 def reqister():
     if request.method == 'POST':
-        print(request.form['position'])
         if request.form['password'] != request.form['password2']:
             return render_template('register2.html', message="Пароли не совпадают")
         db_sess = db_session.create_session()
@@ -85,7 +91,6 @@ def reqister():
             return render_template('register2.html', message="Такой пользователь уже есть")
         if db_sess.query(User).filter(User.username == request.form['username']).first():
             return render_template('register2.html', message="Такой пользователь уже есть")
-
         user = User(
             name=request.form['name'],
             email=request.form['email'],

@@ -57,29 +57,12 @@ left: 2px;
     <caption>Основные сведения об образовательной организации</caption>
 </table>
 <table class="table_price">
+    {% for i in data.keys() %}
     <tr>
-        <td style="font-weight: bold">Наименование</td>
-        <td>10$</td>
+        <td style="font-weight: bold">{{i}}</td>
+        <td>{{data[i]}}</td>
     </tr>
-    <tr>
-        <td style="font-weight: bold">Дата создания</td>
-        <td>20$</td>
-    </tr>
-    <tr>
-        <td style="font-weight: bold">Место нахождения</td>
-        <td>30$</td>
-    </tr>
-    <tr>
-        <td style="font-weight: bold">Режим и график работы</td>
-        <td>60$</td>
-    </tr>
-    <tr>
-        <td style="font-weight: bold">Контактные телефоны</td>
-        <td>60$</td>
-    </tr>
-    <tr>
-        <td style="font-weight: bold">Адреса электронной почты</td>
-        <td>60$</td>
-    </tr>
+    {% endfor %}
 </table>
+<br>
 {% endblock %}
