@@ -170,10 +170,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/schedule">Schedule</a>
                     </li>
+                {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Contact</a>
+                        <a class="nav-link" href="/groups">Groups</a>
                     </li>
                 </ul>
+                {% else %}
+                </ul>
+                {% endif %}
                 {% if current_user.is_authenticated %}
                 <ul class="navbar-nav ml-auto" style="font-size: 20px">
                     <li class="nav-item">

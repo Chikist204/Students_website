@@ -1,14 +1,15 @@
 import json
+import sqlite3
 from os import abort
 from flask import request, make_response, jsonify
 from flask import Flask, render_template, redirect
 from data import db_session  # news_api
 from data.users import User
-from forms.user import RegisterForm
 import datetime
 from flask_login import LoginManager, login_required, logout_user
 from flask_login import login_user
 from flask_login import current_user
+from forms import location
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -66,7 +67,20 @@ def schedule():
 
 @app.route("/location")
 def location():
-    pass
+    return render_template("location.html")
+
+
+@app.route("/groups", methods=['GET', 'POST'])
+def groups():
+    if request.method == 'POST':
+        clas = request.form['group']
+        con = sqlite3.connect("db/students.db")
+        cur = con.cursor()
+        users = cur.execute("""SELECT name, email FROM students
+                    WHERE groups = ?""", (clas,)).fetchall()
+        con.close()
+        return render_template("groups.html", data=users, clas=clas)
+    return render_template("groups.html", clas="")
 
 
 @app.route("/profile/<username>")
@@ -112,7 +126,6 @@ def not_found(error):
 
 def main():
     db_session.global_init("db/students.db")
-    # app.register_blueprint(news_api.blueprint)
     app.run()
 
 

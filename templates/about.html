@@ -49,6 +49,19 @@ box-shadow: none;
 top: 2px;
 left: 2px;
 }
+a.button24 {
+  display: inline-block;
+  color: white;
+  align: center;
+  text-decoration: none;
+  padding: .5em 2em;
+  outline: none;
+  border-radius: 6px;
+  background: #000A33;
+  transition: 0.2s;
+}
+a.button24:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+
 </style>
 {% endblock %}
 
@@ -64,5 +77,7 @@ left: 2px;
     </tr>
     {% endfor %}
 </table>
+<br>
+<a href="location" class="button24" align="center">Получить снимок Лицея</a>
 <br>
 {% endblock %}

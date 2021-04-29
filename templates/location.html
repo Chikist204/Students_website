@@ -1,1 +1,11 @@
-{% extends base.html %}
+{% extends "base.html" %}
+{% block head %}
+<style>
+.pic {
+text-align: center; /* Выравнивания картинки по центру в html */
+}
+</style>
+{% endblock %}
+{% block content %}
+<p class="pic"><img src="{{url_for('static', filename='images/map.jpg')}}"  width="900" height="700" alt="pic"></p>
+{% endblock %}

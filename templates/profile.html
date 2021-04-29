@@ -160,7 +160,7 @@ left: 2px;
                                             <label style="font-weight:bold;">Group</label>
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            {{current_user.group}}
+                                            {{current_user.groups}}
                                         </div>
                                     </div>
                                     <hr/>
@@ -168,7 +168,7 @@ left: 2px;
                                 <div class="tab-pane fade" id="connectedServices" role="tabpanel"
                                      aria-labelledby="ConnectedServices-tab">
                                     <table class="table_price" align="center">
-                                        <caption>{{current_user.group}}</caption>
+                                        <caption>{{current_user.groups}}</caption>
                                     </table>
                                     <table class="table_price" align="center">
                                         <tr>
@@ -177,7 +177,7 @@ left: 2px;
                                             <td style="font-weight: bold" bgcolor="green">Четверг</td>
                                             <td style="font-weight: bold" bgcolor="green">Пятница</td>
                                         </tr>
-                                        {% set i = current_user.group %}
+                                        {% set i = current_user.groups %}
                                         {% for y in range(8) %}
                                         <tr>
                                             <td>{{data[i]["1"][y]}}</td>

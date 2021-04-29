@@ -16,7 +16,7 @@ class User(SqlAlchemyBase, UserMixin):
     email = sqlalchemy.Column(sqlalchemy.String,
                               index=True, unique=True, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    group = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    groups = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=datetime.datetime.now)
     image = sqlalchemy.Column(sqlalchemy.String, default="http://placehold.it/150x150")
