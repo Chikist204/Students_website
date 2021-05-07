@@ -110,7 +110,7 @@ def reqister():
             email=request.form['email'],
             username=request.form['username'],
             role=request.form['position'],
-            group=request.form['group'],
+            groups=request.form['group'],
         )
         user.set_password(request.form['password'])
         db_sess.add(user)
